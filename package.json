@@ -1,0 +1,39 @@
+{
+  "name": "nuxt-cache-ssr",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Bhaskar Gyan Vardhan"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    },
+    "./dist/runtime/*": "./dist/runtime/*.mjs",
+    "./*": "./*"
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+  },
+  "dependencies": {
+    "cache-manager": "^5.1.1"
+  },
+  "devDependencies": {
+    "@nuxt/kit": "^3.0.0-rc.12",
+    "@nuxt/module-builder": "^0.2.0",
+    "@nuxt/schema": "^3.0.0-rc.12",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "eslint": "^8.25.0",
+    "nuxt": "^3.0.0-rc.12"
+  }
+}
