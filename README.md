@@ -21,7 +21,6 @@ module.exports = {
    
     pages: [
       // these are prefixes of pages that need to be cached
-      // if you want to cache all pages, just include '/'
       '/page1',
       '/page2',
 

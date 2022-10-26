@@ -1,6 +1,6 @@
 {
   "name": "nuxt-cache-ssr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "type": "module",
   "author": {
@@ -35,5 +35,22 @@
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "eslint": "^8.25.0",
     "nuxt": "^3.0.0-rc.12"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bhaskarGyan/nuxt-cache-ssr.git"
+  },
+  "keywords": [
+    "nuxt",
+    "nuxt3",
+    "ssr",
+    "cache",
+    "redis",
+    "vue3",
+    "spa"
+  ],
+  "bugs": {
+    "url": "https://github.com/bhaskarGyan/nuxt-cache-ssr/issues"
+  },
+  "homepage": "https://github.com/bhaskarGyan/nuxt-cache-ssr#readme"
 }
