@@ -1,8 +1,16 @@
 // import LRU from 'lru-cache';
 import { caching } from 'cache-manager'
 import { hash } from 'ohash';
+import { options } from '#cache-ssr-options'
 
-
+const DefaultCacheOption = {
+    max: 500,
+    ttl: 10000
+}
+interface CacheOptions {
+    max: number;
+    ttl: number;
+}
 const DefaultOptionsLRU = {
     max: 500,
     ttl: 1000 * 60,
@@ -28,11 +36,12 @@ class InMemoryCache {
         await this.cached.set(hash(key), value)
     }
 
-    async init() {
-        this.cached = await caching('memory', {
-            max: 500,
-            ttl: Number(108000)
-        })
+    async init(options: CacheOptions) {
+        let cachingOption: CacheOptions = DefaultCacheOption;
+        if (options !== null && typeof options === 'object') {
+            cachingOption = { ...cachingOption, ...options }
+        }
+        this.cached = await caching('memory', cachingOption)
     }
 
 }

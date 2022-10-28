@@ -1,6 +1,6 @@
 import { defineNuxtModule, createResolver, addServerHandler } from '@nuxt/kit'
 export interface ModuleOptions {
-  addPlugin: boolean
+  enabled: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -9,9 +9,13 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'cacheSSR',
     compatibility: {
       nuxt: '^3.0.0-rc.9'
+    },
+    default: {
+      enabled: true
     }
   },
   async setup(options, nuxt) {
+    if (!options.enabled) return
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = await resolve('./runtime')
     nuxt.options.build.transpile.push(runtimeDir)
