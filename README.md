@@ -25,8 +25,19 @@ module.exports = {
       '/page2',
 
     ],
-    key:(route:string,headers: object)=>{
-         // return custom key, if return false then it will fallback to key genration based on current route
+    key:(route:string,headers: any,device:Device)=>{
+
+          //sample of using device to generate key
+        
+          const {userAgent,...deviceType} = device
+          const key = [route];
+          Object.keys(deviceType).forEach(val => {
+            if(deviceType[val]){
+              key.push(val)
+            }
+          })
+           // returned value will be hashed using ohash
+          return key.join("-")
     }
   },
 
