@@ -3,7 +3,7 @@ import InMemoryCache from './cache.inmemory'
 import { options } from '#cache-ssr-options'
 import { isUrlCacheable } from './cache.utils'
 import type { NitroAppPlugin } from 'nitropack'
-import generateFlags from '../generateFlags'
+import generateFlags from './generateFlags'
 
 const customKey = options.key ? eval(options.key) : null
 
