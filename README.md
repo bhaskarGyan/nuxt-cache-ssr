@@ -72,5 +72,5 @@ interface Device {
 
 - [ ] In Memory cache options
 - [ ] Regex for Pages
-- [ ] Custom Key for Page Cache
+- [x] Custom Key for Page Cache
 - [ ] Redis Cache
