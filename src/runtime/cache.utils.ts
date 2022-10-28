@@ -1,11 +1,11 @@
 
-export const isUrlCacheable = (req, pages = [])=>{
+export const isUrlCacheable = (req, pages = []) => {
 
-    const {url} = req
+    const { url } = req
     let isCacheable = false
 
-    pages.forEach(page =>{
-        if(url?.startsWith(page)) {
+    pages.forEach(page => {
+        if (url?.startsWith(page) || (page === '/' && url === page)) {
             isCacheable = true
         }
     });

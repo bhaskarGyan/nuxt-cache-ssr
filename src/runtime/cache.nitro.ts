@@ -4,15 +4,14 @@ import { options } from '#cache-ssr-options'
 import { isUrlCacheable } from './cache.utils'
 import type { NitroAppPlugin } from 'nitropack'
 
+const customKey = options.key ? eval(options.key) : null
 
-export default <NitroAppPlugin> async function (nitroApp) {
+export default <NitroAppPlugin>async function (nitroApp) {
   await InMemoryCache.init()
   nitroApp.hooks.hook('render:response', async (response, { event }) => {
     const isCacheable = isUrlCacheable(event.req, options.pages)
-
     if (isCacheable && response.statusCode === 200) {
-      const key = event.req.url
-
+      const key = customKey ? customKey(event.req.url, event.req.headers) : event.req.url
       await InMemoryCache.set(key, response)
 
     }

@@ -16,13 +16,13 @@ class InMemoryCache {
         this.cached = {}
     }
 
-    async get(key:string) {
+    async get(key: string) {
 
         const result = await this.cached.get(key)
         return result
     }
 
-    async set(key:string, value:any) {
+    async set(key: string, value: any) {
 
         await this.cached.set(key, value)
     }
