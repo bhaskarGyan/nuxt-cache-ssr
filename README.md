@@ -27,6 +27,7 @@ module.exports = {
     ],
     key:(route:string,headers: any,device:Device)=>{
 
+          // Link to the function will be broken, so cannot use any imported modules or custom functions
           //sample of using device to generate key
         
           const {userAgent,...deviceType} = device
@@ -44,7 +45,28 @@ module.exports = {
   // ...
 };
 ```
-
+### Device Interface
+```javascript
+interface Device {
+  userAgent: string
+  isDesktop: boolean
+  isIos: boolean
+  isAndroid: boolean
+  isMobile: boolean
+  isMobileOrTablet: boolean
+  isDesktopOrTablet: boolean
+  isTablet: boolean
+  isWindows: boolean
+  isMacOS: boolean
+  isApple: boolean
+  isSafari: boolean
+  isFirefox: boolean
+  isEdge: boolean
+  isChrome: boolean
+  isSamsung: boolean
+  isCrawler: boolean
+}
+```
 
 ### TODO
 
