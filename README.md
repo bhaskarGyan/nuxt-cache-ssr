@@ -3,6 +3,14 @@
 
 In Memory Cache middleware for Nuxt3 SSR rendering .
 
+### TODO
+
+- [x] In Memory cache options
+- [ ] Regex for Pages
+- [x] Custom Key for Page Cache
+- [ ] Redis Cache
+- [x] option to disable per enviroment
+
 ## Setup
 ```npm install nuxt-cache-ssr```
 
@@ -18,7 +26,18 @@ module.exports = {
       'nuxt-cache-ssr',
   ],
   cache: {
-   
+    // Can be disable per enviroment, like in dev
+    enabled: true,
+    store: {
+      // Plceholder for store type, will be usable after Redis Release
+      type: 'memory',
+      // maximum number of pages to store in memory
+      // if limit is reached, least recently used page
+      // is removed.
+      max: 500,
+      // number of Millisecond to store this page in cache
+      ttl: 1000 * 60 // 1 Minute
+    },
     pages: [
       // these are prefixes of pages that need to be cached
       '/page1',
@@ -67,10 +86,3 @@ interface Device {
   isCrawler: boolean
 }
 ```
-
-### TODO
-
-- [ ] In Memory cache options
-- [ ] Regex for Pages
-- [x] Custom Key for Page Cache
-- [ ] Redis Cache
