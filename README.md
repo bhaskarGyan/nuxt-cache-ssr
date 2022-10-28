@@ -25,6 +25,9 @@ module.exports = {
       '/page2',
 
     ],
+    key:(route:string,headers: object)=>{
+         // return custom key, if return false then it will fallback to key genration based on current route
+    }
   },
 
   // ...
