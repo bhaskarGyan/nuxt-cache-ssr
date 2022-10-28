@@ -1,5 +1,6 @@
 // import LRU from 'lru-cache';
 import { caching } from 'cache-manager'
+import { hash } from 'ohash';
 
 
 const DefaultOptionsLRU = {
@@ -16,15 +17,15 @@ class InMemoryCache {
         this.cached = {}
     }
 
-    async get(key:string) {
+    async get(key: string) {
 
-        const result = await this.cached.get(key)
+        const result = await this.cached.get(hash(key))
         return result
     }
 
-    async set(key:string, value:any) {
+    async set(key: string, value: any) {
 
-        await this.cached.set(key, value)
+        await this.cached.set(hash(key), value)
     }
 
     async init() {

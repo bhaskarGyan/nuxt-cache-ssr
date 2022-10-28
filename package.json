@@ -26,7 +26,8 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
   },
   "dependencies": {
-    "cache-manager": "^5.1.1"
+    "cache-manager": "^5.1.1",
+    "ohash": "^0.1.5"
   },
   "devDependencies": {
     "@nuxt/kit": "^3.0.0-rc.12",
