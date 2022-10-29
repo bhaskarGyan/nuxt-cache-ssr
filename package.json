@@ -48,7 +48,8 @@
     "cache",
     "redis",
     "vue3",
-    "spa"
+    "spa",
+    "nuxt-module"
   ],
   "bugs": {
     "url": "https://github.com/bhaskarGyan/nuxt-cache-ssr/issues"
