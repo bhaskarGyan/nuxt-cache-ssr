@@ -64,6 +64,18 @@ export default defineNuxtConfig({
   // ...
 })
 ```
+
+### Configuration
+
+| Option | Type | Description | Default |
+| ------ | ---- | ----------- | ------- |
+| enabled | `boolean` | To enable/ disable the SSR cache | `true` |
+| store | `object` | SSR cache store options | `{type:'',max:500,ttl:10000}` |
+| pages | `Array` | Pages to cache | N/A |
+| key | `Function` | Use for generating custo key based on route,headers,and device type. Returned string will be hashed using `ohash` | `url` |
+|||||
+
+
 ### Device Interface
 ```javascript
 interface Device {
