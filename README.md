@@ -3,13 +3,14 @@
 
 In Memory Cache middleware for Nuxt3 SSR rendering .
 
-### TODO
+## TODO
 
 - [x] In Memory cache options
-- [ ] Regex for Pages
 - [x] Custom Key for Page Cache
-- [ ] Redis Cache
 - [x] option to disable per enviroment
+- [ ] Regex for Pages
+- [ ] Redis Cache
+- [ ] Auto refresh cache before expiry (?)
 
 ## Setup
 ```npm install nuxt-cache-ssr```
@@ -65,18 +66,18 @@ export default defineNuxtConfig({
 })
 ```
 
-### Configuration
+## Configuration
 
-| Option | Type | Description | Default |
-| ------ | ---- | ----------- | ------- |
-| enabled | `boolean` | To enable/ disable the SSR cache | `true` |
-| store | `object` | SSR cache store options | `{type:'',max:500,ttl:10000}` |
-| pages | `Array` | Pages to cache | N/A |
-| key | `Function` | Use for generating custo key based on route,headers,and device type. Returned string will be hashed using `ohash` | `url` |
-|||||
+| Option | Type | Required | Description | Default |
+| ------ | ---- | ------ | ----------- | ------- |
+| enabled | `boolean` | No |To enable/ disable the SSR cache | `true` |
+| store | `object` | No | SSR cache store options | `{type:'',max:500,ttl:10000}` |
+| pages | `Array` |  Yes |Pages to cache | N/A |
+| key | `Function` |  No | Use for generating custo key based on route,headers,and device type. Returned string will be hashed using `ohash` | `url` |
+||||||
 
 
-### Device Interface
+## Device Interface
 ```javascript
 interface Device {
   userAgent: string
@@ -98,3 +99,6 @@ interface Device {
   isCrawler: boolean
 }
 ```
+## caveat
+**important security warning** : don't load secret keys such as user credential on the server for cached pages.
+ _this is because they will cache for all users!_
