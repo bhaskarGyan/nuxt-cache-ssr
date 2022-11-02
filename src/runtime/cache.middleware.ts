@@ -9,9 +9,11 @@ const customKey = options.key ? eval(options.key) : null
 
 export default fromNodeMiddleware(async (req, res, next) => {
   const { url } = req
-  if (isUrlCacheable(req, options.pages)) {
+
+  if (isUrlCacheable(req, res, options.pages)) {
     const key = customKey ? customKey(url, req.headers, generateFlags(req.headers, req.headers['user-agent'])) : url;
     const cachedRes = await InMemoryCache.get(key);
+
     if (cachedRes) {
       res.writeHead(200, { ...cachedRes.headers, 'x-ssr-cache': 'HIT' });
       res.end(cachedRes.body)
