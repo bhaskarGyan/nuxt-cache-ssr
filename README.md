@@ -111,3 +111,9 @@ interface Device {
 ## caveat
 **important security warning** : don't load secret keys such as user credential on the server for cached pages.
  _this is because they will cache for all users!_
+
+
+<p align="center"> 
+  Visitor count<br>
+  <img src="https://profile-counter.glitch.me/bhaskarGyan/count.svg" />
+</p>
