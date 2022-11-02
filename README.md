@@ -25,6 +25,8 @@ then inside your `nuxt.config.js` add cache config:
 export default defineNuxtConfig({
   modules: [
     ['nuxt-cache-ssr', {
+      // To enable brotli compression pass encoding option as br
+      compressResponse: {encoding:'gzip'},
       // Can be disable per enviroment, like in dev
       enabled: true,
       store: {
@@ -74,6 +76,7 @@ export default defineNuxtConfig({
 | store | `object` | No | SSR cache store options | `{type:'',max:500,ttl:10000}` |
 | pages | `Array` |  Yes |Pages to cache | N/A |
 | key | `Function` |  No | Use for generating custo key based on route,headers,and device type. Returned string will be hashed using `ohash` | `url` |
+| compressResponse | `object` |  No | To compress cached response with gzip or brotli | `false` |
 ||||||
 
 
