@@ -16,9 +16,15 @@ export const isUrlCacheable = (req, res, pages = []) => {
     }
 
     pages.forEach(page => {
-        if (url?.startsWith(page) || (page === '/' && url === page)) {
+        // caching for home page, Need to work on better logic
+        if (page === '/') {
+            if (page === url) {
+                isCacheable = true
+            }
+        } else if (url?.startsWith(page)) {
             isCacheable = true
         }
+
     });
 
     return isCacheable
