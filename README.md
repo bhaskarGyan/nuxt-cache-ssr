@@ -46,7 +46,7 @@ export default defineNuxtConfig({
         ttl: 1000 * 60 // 1 Minute
       },
       pages: [
-        // these are prefixes of pages that need to be cached
+        // these are prefixes of pages that need to be cached, for caching homepage use '/'
         '/page1',
         '/page2',
 
