@@ -34,8 +34,7 @@ export default <NitroAppPlugin>async function (nitroApp) {
   await InMemoryCache.init(cacheOption);
 
   nitroApp.hooks.hook('render:response', async (response, { event }) => {
-    const isCacheable = isUrlCacheable(event.req, options.pages)
-
+    const isCacheable = isUrlCacheable(event.req, event.res, options.pages)
     if (isCacheable && response.statusCode === 200) {
       const key = customKey ? customKey(event.req.url, event.req.headers, generateFlags(event.req.headers, event.req.headers['user-agent'])) : event.req.url
       let cachedRes = response;
