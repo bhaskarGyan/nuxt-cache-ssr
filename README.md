@@ -8,6 +8,8 @@ In Memory Cache middleware for Nuxt3 SSR rendering .
 - [x] In Memory cache options
 - [x] Custom Key for Page Cache
 - [x] option to disable per enviroment
+- [x] Compress cached response (experimental)
+- [x] Disble page cached on demand (experimental)
 - [ ] Regex for Pages
 - [ ] Redis Cache
 - [ ] Auto refresh cache before expiry (?)
@@ -25,8 +27,12 @@ then inside your `nuxt.config.js` add cache config:
 export default defineNuxtConfig({
   modules: [
     ['nuxt-cache-ssr', {
-      // To enable brotli compression pass encoding option as br
+      // experimental : To enable brotli compression pass encoding option as br
       compressResponse: {encoding:'gzip'},
+      // experimental : Pass headerkey in page response to exclude the page froom cache
+      disableCacheOnDemand:{
+        headerKey:"x-no-cache-ssr"
+      },
       // Can be disable per enviroment, like in dev
       enabled: true,
       store: {
