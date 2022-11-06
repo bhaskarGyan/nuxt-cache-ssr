@@ -1,5 +1,7 @@
 # nuxt-cache-ssr
 [![NPM version](https://img.shields.io/npm/v/nuxt-cache-ssr.svg)](https://www.npmjs.com/package/nuxt-cache-ssr)
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+
 
 In Memory Cache middleware for Nuxt3 SSR rendering .
 
@@ -112,8 +114,12 @@ interface Device {
 **important security warning** : don't load secret keys such as user credential on the server for cached pages.
  _this is because they will cache for all users!_
 
-
 <p align="center"> 
   Visitor count<br>
   <img src="https://profile-counter.glitch.me/bhaskarGyan/count.svg" />
 </p>
+
+<!-- Badges -->
+
+[npm-downloads-src]: https://img.shields.io/npm/dt/nuxt-cache-ssr
+[npm-downloads-href]: https://npmjs.com/package/nuxt-cache-ssr
