@@ -35,21 +35,26 @@ export default <NitroAppPlugin>async function (nitroApp) {
 
   nitroApp.hooks.hook('render:response', async (response, { event }) => {
     const isCacheable = isUrlCacheable(event.req, event.res, options.pages)
+
     if (isCacheable && response.statusCode === 200) {
       const key = customKey ? customKey(event.req.url, event.req.headers, generateFlags(event.req.headers, event.req.headers['user-agent'])) : event.req.url
-      let cachedRes = response;
 
-      if (encoding) {
-        const encodedBuffer = await compressedBuff(response.body);
+      if (key && typeof key === 'string') {
+        let cachedRes = response;
 
-        cachedRes = {
-          ...cachedRes, body: encodedBuffer, headers: {
-            ...cachedRes.headers, "content-encoding": encoding
+        if (encoding) {
+          const encodedBuffer = await compressedBuff(response.body);
+
+          cachedRes = {
+            ...cachedRes, body: encodedBuffer, headers: {
+              ...cachedRes.headers, "content-encoding": encoding
+            }
           }
         }
+
+        await InMemoryCache.set(key, cachedRes);
       }
 
-      await InMemoryCache.set(key, cachedRes);
 
     }
 
