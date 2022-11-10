@@ -12,14 +12,17 @@ export default fromNodeMiddleware(async (req, res, next) => {
 
   if (isUrlCacheable(req, res, options.pages)) {
     const key = customKey ? customKey(url, req.headers, generateFlags(req.headers, req.headers['user-agent'])) : url;
-    const cachedRes = await InMemoryCache.get(key);
 
-    if (cachedRes) {
-      res.writeHead(200, { ...cachedRes.headers, 'x-ssr-cache': 'HIT' });
-      res.end(cachedRes.body)
-    } else {
-      res.setHeader('x-ssr-cache', 'MISS')
+    if (key && typeof key === 'string') {
+
+      const cachedRes = await InMemoryCache.get(key);
+
+      if (cachedRes) {
+        res.writeHead(200, { ...cachedRes.headers, 'x-ssr-cache': 'HIT' });
+        res.end(cachedRes.body)
+      } else {
+        res.setHeader('x-ssr-cache', 'MISS')
+      }
     }
   }
-
 })
